@@ -11,7 +11,6 @@ def cadastrar_aluno():
 
     print("Aluno cadastrado com sucesso!")
 
-
 def listar_alunos():
     try:
         with open("alunos.txt", "r") as arquivo:
@@ -20,7 +19,6 @@ def listar_alunos():
                 print(f"Nome: {nome}, Email: {email}, Curso: {curso}")
     except FileNotFoundError:
         print("Nenhum aluno cadastrado.")
-
 
 def buscar_aluno_por_nome():
     nome_busca = input("Digite o nome do aluno a ser buscado: ")
@@ -38,7 +36,6 @@ def buscar_aluno_por_nome():
                 print("Aluno não encontrado.")
     except FileNotFoundError:
         print("Nenhum aluno cadastrado.")
-
 
 def main():
     while True:
@@ -60,7 +57,6 @@ def main():
             break
         else:
             print("Opção inválida. Escolha novamente.")
-
 
 if __name__ == "__main__":
     main()
