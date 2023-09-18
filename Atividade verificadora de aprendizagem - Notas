@@ -1,0 +1,118 @@
+import sqlite3
+
+def criar_tabela_alunos():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS alunos (
+            matricula TEXT PRIMARY KEY,
+            nome TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+def criar_tabela_notas():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS notas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            aluno_matricula TEXT,
+            disciplina TEXT,
+            nota FLOAT,
+            FOREIGN KEY (aluno_matricula) REFERENCES alunos(matricula)
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+def cadastrar_aluno():
+    matricula = input("Matrícula do aluno: ")
+    nome = input("Nome do aluno: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO alunos (matricula, nome) VALUES (?, ?)", (matricula, nome))
+    conn.commit()
+    conn.close()
+
+    print("Aluno cadastrado com sucesso!")
+
+def cadastrar_aluno_em_disciplinas():
+    matricula = input("Matrícula do aluno: ")
+    disciplina = input("Disciplina: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO notas (aluno_matricula, disciplina) VALUES (?, ?)", (matricula, disciplina))
+    conn.commit()
+    conn.close()
+
+    print("Aluno cadastrado na disciplina com sucesso!")
+
+def cadastrar_notas():
+    matricula = input("Matrícula do aluno: ")
+    disciplina = input("Disciplina: ")
+    nota = float(input("Nota: "))
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT id FROM notas WHERE aluno_matricula=? AND disciplina=?", (matricula, disciplina))
+    result = cursor.fetchone()
+
+    if result:
+        cursor.execute("UPDATE notas SET nota=? WHERE id=?", (nota, result[0]))
+    else:
+        cursor.execute("INSERT INTO notas (aluno_matricula, disciplina, nota) VALUES (?, ?, ?)", (matricula, disciplina, nota))
+
+    conn.commit()
+    conn.close()
+
+    print("Nota cadastrada com sucesso!")
+
+def listar_notas_aluno():
+    matricula = input("Matrícula do aluno: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT disciplina, nota FROM notas WHERE aluno_matricula=?", (matricula,))
+    notas = cursor.fetchall()
+    conn.close()
+
+    if not notas:
+        print("Nenhuma nota encontrada para este aluno.")
+    else:
+        for disciplina, nota in notas:
+            print(f"Disciplina: {disciplina}, Nota: {nota}")
+
+def main():
+    criar_tabela_alunos()
+    criar_tabela_notas()
+    
+    while True:
+        print("\nOpções:")
+        print("1 - Cadastrar novo aluno")
+        print("2 - Cadastrar aluno em disciplinas")
+        print("3 - Cadastrar notas de um aluno")
+        print("4 - Listar notas de um aluno")
+        print("5 - Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            cadastrar_aluno()
+        elif opcao == '2':
+            cadastrar_aluno_em_disciplinas()
+        elif opcao == '3':
+            cadastrar_notas()
+        elif opcao == '4':
+            listar_notas_aluno()
+        elif opcao == '5':
+            break
+        else:
+            print("Opção inválida. Escolha novamente.")
+
+if __name__ == "__main__":
+    main()
