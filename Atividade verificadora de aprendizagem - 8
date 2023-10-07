@@ -1,0 +1,184 @@
+import sqlite3
+
+# Função para criar a tabela de alunos (se ainda não existir)
+def criar_tabela_alunos():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS alunos (
+            matricula TEXT PRIMARY KEY,
+            nome TEXT,
+            curso_id INTEGER,
+            FOREIGN KEY (curso_id) REFERENCES cursos(id)
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Função para criar a tabela de cursos (se ainda não existir)
+def criar_tabela_cursos():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS cursos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Função para criar a tabela de notas (se ainda não existir)
+def criar_tabela_notas():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS notas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            aluno_matricula TEXT,
+            curso_id INTEGER,
+            nota REAL,
+            FOREIGN KEY (aluno_matricula) REFERENCES alunos(matricula),
+            FOREIGN KEY (curso_id) REFERENCES cursos(id)
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Função para adicionar um novo curso ao banco de dados
+def adicionar_curso():
+    nome_curso = input("Nome do curso: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO cursos (nome) VALUES (?)", (nome_curso,))
+    conn.commit()
+    
+    # Recupera o ID do curso recém-inserido
+    cursor.execute("SELECT last_insert_rowid()")
+    curso_id = cursor.fetchone()[0]
+
+    conn.close()
+
+    print(f"Curso '{nome_curso}' adicionado com sucesso. ID do curso: {curso_id}")
+
+# Função para cadastrar um novo aluno no banco de dados
+def cadastrar_aluno():
+    matricula = input("Matrícula do aluno: ")
+    nome = input("Nome do aluno: ")
+    curso_id = input("ID do curso: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO alunos (matricula, nome, curso_id) VALUES (?, ?, ?)", (matricula, nome, curso_id))
+    conn.commit()
+    conn.close()
+
+    print("Aluno cadastrado com sucesso!")
+
+# Função para cadastrar notas para um aluno
+def cadastrar_notas():
+    matricula = input("Matrícula do aluno: ")
+    
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    
+    # Recupera o ID do curso correspondente à matrícula do aluno
+    cursor.execute("SELECT curso_id FROM alunos WHERE matricula=?", (matricula,))
+    curso_id = cursor.fetchone()
+    
+    if curso_id is not None:
+        nota = float(input("Nota: "))
+        cursor.execute("INSERT INTO notas (aluno_matricula, curso_id, nota) VALUES (?, ?, ?)", (matricula, curso_id[0], nota))
+        conn.commit()
+        conn.close()
+        print("Nota cadastrada com sucesso!")
+    else:
+        conn.close()
+        print("Aluno não encontrado.")
+
+# Função para exibir informações de um aluno por matrícula
+def exibir_info_aluno():
+    matricula = input("Matrícula do aluno: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT alunos.nome, cursos.nome, notas.nota FROM alunos JOIN cursos ON alunos.curso_id = cursos.id LEFT JOIN notas ON alunos.matricula = notas.aluno_matricula WHERE alunos.matricula=?", (matricula,))
+    info_aluno = cursor.fetchone()
+
+    if info_aluno is not None:
+        print(f"Nome do Aluno: {info_aluno[0]}")
+        print(f"Curso: {info_aluno[1]}")
+        print(f"Nota: {info_aluno[2] if info_aluno[2] is not None else 'Nenhuma nota cadastrada'}")
+    else:
+        print("Aluno não encontrado.")
+
+# Função para listar todos os alunos de um determinado curso
+def listar_alunos_por_curso():
+    curso_id = input("ID do curso: ")
+
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT matricula, nome FROM alunos WHERE curso_id=?", (curso_id,))
+    alunos = cursor.fetchall()
+    conn.close()
+
+    if not alunos:
+        print("Nenhum aluno encontrado para este curso.")
+    else:
+        print(f"Alunos do curso {curso_id}:")
+        for matricula, nome in alunos:
+            print(f"Matrícula: {matricula}, Nome: {nome}")
+
+# Função para listar todas as notas de todos os alunos em ordem alfabética
+def listar_notas_alunos():
+    conn = sqlite3.connect("notas.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT alunos.nome, notas.nota FROM alunos JOIN notas ON alunos.matricula = notas.aluno_matricula ORDER BY alunos.nome")
+    notas = cursor.fetchall()
+    conn.close()
+
+    if not notas:
+        print("Nenhuma nota encontrada.")
+    else:
+        print("Notas de todos os alunos em ordem alfabética:")
+        for nome, nota in notas:
+            print(f"Aluno: {nome}, Nota: {nota}")
+
+# Função principal
+def main():
+    criar_tabela_cursos()
+    criar_tabela_alunos()
+    criar_tabela_notas()
+    
+    while True:
+        print("\nOpções:")
+        print("1 - Adicionar um novo curso")
+        print("2 - Cadastrar novo aluno")
+        print("3 - Cadastrar notas de um aluno")
+        print("4 - Exibir informações de um aluno por matrícula")
+        print("5 - Listar alunos por curso")
+        print("6 - Listar todas as notas de todos os alunos")
+        print("7 - Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            adicionar_curso()
+        elif opcao == '2':
+            cadastrar_aluno()
+        elif opcao == '3':
+            cadastrar_notas()
+        elif opcao == '4':
+            exibir_info_aluno()
+        elif opcao == '5':
+            listar_alunos_por_curso()
+        elif opcao == '6':
+            listar_notas_alunos()
+        elif opcao == '7':
+            break
+        else:
+            print("Opção inválida. Escolha novamente.")
+
+if __name__ == "__main__":
+    main()
