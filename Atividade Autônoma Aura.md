@@ -13,7 +13,6 @@ d) Feedback constante do usuário. ( )
 
 **e) Ter como pré-requisito equipes tecnicamente muito qualificadas. (X)**
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 Para que a RAD possa cumprir o seu objetivo que é o de reduzir o tempo de entrega de produtos, ela precisa de ferramentas que facilitem o desenvolvimento de software. Um dos recursos mais importantes para atingir tal objetivo é o uso de framework. Em relação aos frameworks para desenvolvimento de aplicações RAD, selecione a opção CORRETA: 
@@ -28,7 +27,7 @@ d) Qualquer projeto RAD implementado em Python deve utilizar os frameworks Tkint
 
 e)) A escolha de um framework não deve levar em consideração as necessidades do projeto que sedeseja implementar. Ela tem que estar baseada nas bibliotecas, documentação disponível e a linguagem de programação disponibilizadas para desenvolver o projeto. ( )
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 3:**
 
@@ -45,7 +44,6 @@ d) Texto e Stream ( )
 
 e) Multimidia e Stream ( )
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
 
 **Questão 2)** 
 O Python conta com recursos voltados à gravação e à leitura de arquivos, sejam eles binários ou texto. Nos arquivos do tipo texto a primeira providência é abrir o arquivo utilizando o método:
@@ -60,7 +58,7 @@ d) get("nome_arquivo",w) ( )
 
 e) readline("nome_arquivo",r ( )
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 4:**
 
@@ -78,7 +76,6 @@ c) O modo correto é usando # (Hashtag), ou % (percentual) ()
 
 e) Podemos utilizar { } (chaves), ou " (Aspas duplas) ()
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 As operações com arquivos são fundamentais na programação, pois os arquivos são um recurso muito útil para manter a persistência de dados. O Python oferece comandos que permitem que os desenvolvedores possam fazer essas manipulações.
@@ -94,7 +91,7 @@ d) Para abrir um arquivo texto, por exemplo, sempre é necessário verificar se 
 
 e) Os arquivos podem gerar muitos problemas, portanto são um recurso de uso apenas didático. Aplicações reais são desenvolvidas com bancos de dados. ()
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 5:**
 
@@ -123,7 +120,6 @@ c) Esse programa está preparado para tratar exceções de conexão com o banco 
 
 e) Esse código está implementado usando programação orientada a objetos ()
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 O Python possui diversos frameworks para fazer operações em um banco de dados. Entre esses frameworks está o psycopg2 que faz a interface com o Postgres. Em relação ao psycopg2, selecione a opção correta:
@@ -138,7 +134,7 @@ d) Os programas que utilizam o psycopg2 só vão funcionar se as exceções fore
 
 e) Os programas que utilizam o psycopg2 devem estar implementados seguindo a programação estruturada. ()
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 6:**
 
@@ -156,7 +152,6 @@ d) import sqlite3 conector = sqlite3.server("exemplo.db") ()
 
 e) import sqlite3 conector = sqlite3.open("exemplo.db") ()
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 Qual é o comando em SQLite para realizar uma operação de criação de uma tabela no banco de dados ?
@@ -171,7 +166,7 @@ d) create ()
 
 e) insert ()
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 7:**
 
@@ -188,7 +183,6 @@ c) inserirmuitos ()
 
 e) writeln ()
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 Após a execução de comandos de manipulação de registros, tem-se que realizar a finalização da transação, e para isso usamos o comando:
@@ -203,7 +197,7 @@ d) execute ()
 
 e) run ()
 
-**--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Atividades Aula 8:**
 
@@ -220,7 +214,6 @@ d) run()
 
 e) show()
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Questão 2)**
 A linguagem de programação Python tem enorme facilidade e flexibilidade para a realização de consultas nos mais variados banco de dados. Após executar a solicitação da consulta deve processar o resultado através dos métodos:
