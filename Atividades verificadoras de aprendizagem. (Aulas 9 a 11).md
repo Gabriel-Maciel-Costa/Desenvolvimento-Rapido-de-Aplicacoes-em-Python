@@ -1,0 +1,106 @@
+**Aula 9:**
+
+**Questão 1)**
+A linguagem Python é uma escolha bastante interessante para desenvolver diversas aplicações, com, por exemplo, o desenvolvimento de aplicações com interface gráfica (GUI). Um desses frameworks é o Tkinter. A respeito do Tkinter, selecione a opção correta.
+
+a) Funciona como um gerenciador de dependências.( )
+
+b) O desenvolvimento com o Tkinter só pode ser desenvolvido com programação orientada a objetos.( )
+
+c) O desenvolvimento com o Tkinter só pode ser desenvolvido sem programação orientada a objetos.( )
+
+**d) É o framework padrão do Python para desenvolvimento de aplicações GUI.(X)**
+
+e) É um framework bastante robusto e ideal para desenvolvimento de jogos.( )
+
+**Questão 2)**
+Um dos frameworks do Python mais conhecidos para desenvolvimento GUI é o Flexx. Em relação ao framework Flexx, selecione a opção correta:
+
+a) É uma extensão do framework Tkinter. ( )
+
+b) Utiliza o paradigma de programação estruturada. ( )
+
+**c) Uma das formas de instalá-lo é através do pip, ou seja, pip install flexx.(X)**
+
+d) Para iniciar a execução de uma aplicação, basta chamar o comando “m = a.launch()”. ( )
+
+e) É o framework padrão do Python. ( )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Aula 10:**
+
+**Questão 1)**
+O Tkinter é a biblioteca padrão do Python para desenvolver aplicações gráficas. Ela possui diversos componentes (widgets). A respeito dos widgets do Tkinter,  selecione a opção correta.
+
+**a) Botão: uma possibilidade de uso é para confirmar uma ação de salvar os dados. (X)**
+
+b) Telas: é usado para fazer conexões com banco de dados. ( )
+
+c) Botão de verificação: é usado para verificar se uma opção está correta. ( )
+
+d) Entrada de texto: é usado para ler dados de arquivos texto. ( )
+
+e) Quadros: é usado para o usuário entrar com dados. ( )
+
+Questão 2) 
+Observe a figura com uma aplicação desenvolvida com o Tkinter:
+Agora, vamos olhar o código que gerou a aplicação faltando alguns trechos:
+import lacuna1 as tk
+janela = tk.Tk()
+janela.title("Aplicação GUI")
+janela.lacuna2()
+Selecione a opção que completa corretamente o código para obter a aplicação que foi apresentada na figura.
+
+a) Substituir lacuna1 por TK e lacuna2 por main. ( )
+
+**b) Substituir lacuna1 por tkinter e lacuna2 por mainloop.(X)**
+
+c) Substituir lacuna1 por python.tkinter e lacuna2 por main. ( )
+
+d) Substituir lacuna1 por python.tkinter e lacuna2 por mainloop. ( )
+
+e) Substituir lacuna1 por tkinter e lacuna2 por main. ( )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Aula 11:**
+
+**Questão 1)** 
+PostgreSQL é um dos banco de dados mais utilizados no mundo, por ser opensource
+torna-se uma ótima opção aos banco de dados pagos como Oracle e SqlServer. O PSYCOPG é
+considerado o adaptador mais utilizado para conexões com o PostgreSQL. A forma correta de abrir
+conexão com o PSYCOPG é:
+a) import psycopg con = psycopg.open(host='localhost', database='exemplo', user='postgres', password='postgres123'). ( )
+
+b) import psycopg2 con = psycopg2.open(host='localhost', database='exemplo', user='postgres', password='postgres123'). ( )
+
+c) import psycopg con = psycopg.connect(host='localhost', database='exemplo', user='postgres', password='postgres123'). ( )
+
+d) import psycopg2 con = psycopg2.postgres(host='localhost', database='exemplo', user='postgres', password='postgres123'). ( )
+
+**e) import psycopg2 con = psycopg2.connect(host='localhost', database='exemplo', user='postgres', password='postgres123'). (X)**
+
+**Questão 2)**
+O Python possui diversos frameworks para trabalhar com banco de dados. Um desses frameworks é o psycopg2 que faz interface com o Postgres. Observe o programa abaixo. 
+import psycopg2
+conn=psycopg2.connect(database="postgres", user="postgres", password="senha123", host="127.0.0.1",
+port="5432")
+print ("Conexão com o Banco de Dados aberta com sucesso!")
+cur = conn.cursor()
+cur.execute("""select * from public."AGENDA" where "id" = 1""")
+registro = cur.fetchone()
+print(registro)
+conn.commit()
+print("Seleção com sucesso!");
+conn.close()
+
+Agora, selecione a opção correta a respeito do programa :
+
+a) O programa garante que sempre vai retornar dados. ( )
+
+**b) O programa realiza uma consulta na tabela AGENDA onde o atributo id da tabela seja igual a 1. (X)**
+
+c) O código está preparado para tratar possíveis exceções de execução. ( )
+
+d) O código está implementado usando programação orientada a objetos. ( )
+
+e) A última linha é dispensável. ( )
